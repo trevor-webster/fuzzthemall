@@ -1,0 +1,7 @@
+
+- dotnet core 6.0 SDK
+- Please run fuzzer using:
+    dotnet run <fuzzer>
+
+seed input helps give entropy, also customized per prog.
+
