@@ -28,5 +28,7 @@ for i in range(0, math.ceil(num_of_iterations / 500) ):
         data.append(random.getrandbits(8))
     
 
-
+data.extend((65 for _ in range(1000))); #one time pad
+for i in range(8):
+    data[i] = 0x7F
 sys.stdout.buffer.write(bytearray(data))

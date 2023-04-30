@@ -1,7 +1,9 @@
 
-- dotnet core 6.0 SDK
-- Please run fuzzer using:
-    dotnet run <fuzzer>
+DEPENDENCIES
+    python3
 
-seed input helps give entropy, also customized per prog.
+STRATEGY
+
+    The seed input helps give entropy, and is XORd against a stream of entropy, multiple times according to the num_of_iterations
+    A large input is sent guaranteed by large pad. Previous assignments showed large input effective in breaking programs.
 
