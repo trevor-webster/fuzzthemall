@@ -6,13 +6,9 @@ int num_of_iterations = Int32.Parse(Environment.GetCommandLineArgs()[2]);
 byte[] data;
 try
 {
-    FileStream fs = File.OpenRead(_seed_);    
+    FileStream fs = File.OpenRead(_seed_);
     data = new byte[fs.Length];
-    
-     
-            await fs.ReadAsync(data);
-     
-    
+    await fs.ReadAsync(data);
 }
 catch
 {
@@ -23,21 +19,21 @@ var sw = new StreamWriter(Console.OpenStandardOutput());
 sw.AutoFlush = false;
 Console.SetOut(sw);
 
-
-for (int i = 1; i < num_of_iterations; i++)
+for (int i = 0; i < num_of_iterations; i++)
 {
-    
-    data[i] = (byte)(data[i] ^ RandomNumberGenerator.GetInt32(byte.MaxValue));
-
-    if (i % 500 == 0)
-    {
-        byte[] addedBytes = RandomNumberGenerator.GetBytes(10);
-        sw.Write(addedBytes);
-    }
+    // data[i % data.Length] = (byte)(data[i % data.Length] ^ RandomNumberGenerator.GetInt32(byte.MaxValue));
+    // sw.BaseStream.WriteByte((byte)'A');
+    sw.Write('A');
 }
 
-sw.Write(data);
-sw.WriteLine();
+// sw.BaseStream.Write(data,0,data.Length);
+// for (int i = 0; i < (num_of_iterations / 500); i++)
+// {
+//     byte[] addedBytes = RandomNumberGenerator.GetBytes(10);
+//     sw.Write(System.Text.Encoding.UTF8.GetString(addedBytes));    
+// }
+
+sw.BaseStream.WriteByte(0x00);
 sw.Flush();
 
 
